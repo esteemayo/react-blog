@@ -1,9 +1,9 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
-const About = () => {
+const About = ({ title }) => {
   return (
     <>
-      <h2>About page</h2>
+      <h2>{title}</h2>
       <p>
         Maecenas posuere luctus arcu eu aliquam. Nullam fringilla dapibus
         elementum. Proin gravida vitae lorem et dictum. Nullam ut finibus elit.
@@ -47,6 +47,14 @@ const About = () => {
       </p>
     </>
   );
+};
+
+About.defaultProps = {
+  title: 'About page',
+};
+
+About.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default About;

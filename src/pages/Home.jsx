@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import {
   getPosts,
   getNumberOfPosts,
   deletePost,
-} from "../services/postService";
-import PostForm from "../components/PostForm";
-import Spinner from "./../components/Spinner";
-import PostCard from "../components/PostCard";
+} from '../services/postService';
+import PostForm from '../components/PostForm';
+import Spinner from './../components/Spinner';
+import PostCard from '../components/PostCard';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [limit, setLimit] = useState(5);
   const [loading, setLoading] = useState(false);
   const [editingPost, setEditingPost] = useState({
-    title: "",
-    body: "",
+    title: '',
+    body: '',
     id: null,
   });
 
@@ -44,7 +44,7 @@ const Home = () => {
       await deletePost(id);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        toast.error("This post has already been deleted!");
+        toast.error('This post has already been deleted!');
       setPosts(originalPosts);
     }
   };
@@ -69,20 +69,20 @@ const Home = () => {
   return (
     <>
       <div>
-        <div className="row">
-          <div className="col s6">
+        <div className='row'>
+          <div className='col s6'>
             <PostForm addPost={addPost} editingPost={editingPost} />
           </div>
-          <div className="col s3 push-in">
+          <div className='col s3 push-in'>
             <p>Limit number of posts</p>
             <input
-              type="number"
+              type='number'
               value={limit}
               onChange={(e) => setLimit(e.target.value)}
             />
             <button
               onClick={handleGetNumberOfPosts}
-              className="waves-effect waves-light btn"
+              className='waves-effect waves-light btn'
             >
               Set
             </button>
@@ -91,7 +91,7 @@ const Home = () => {
         {loading ? (
           <Spinner />
         ) : (
-          <div className="row">
+          <div className='row'>
             {posts.map((post) => (
               <PostCard
                 key={post.id}

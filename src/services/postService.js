@@ -1,21 +1,27 @@
-import http from "./httpService";
+import http from './httpService';
+
+const apiEndPoint = '/posts';
+
+function postUrl(id) {
+  return `/post/${id}`;
+};
 
 export function getPosts() {
-  return http.get("/posts");
-}
+  return http.get(apiEndPoint);
+};
 
 export function getNumberOfPosts(limit) {
-  return http.get(`/posts/${limit}`);
-}
+  return http.get(`${apiEndPoint}/${limit}`);
+};
 
 export function createPost(post) {
-  return http.post("/post", post);
-}
+  return http.post('/post', post);
+};
 
 export function updatePost(post) {
-  return http.put(`/post/${post.id}`, post);
-}
+  return http.put(postUrl(post.id), post);
+};
 
 export function deletePost(id) {
-  return http.delete(`/post/${id}`);
-}
+  return http.delete(postUrl(id));
+};
